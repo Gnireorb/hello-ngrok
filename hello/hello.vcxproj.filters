@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\imgui">
+      <UniqueIdentifier>{0b043c89-cfbe-485a-b320-63779496e4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\entry">
+      <UniqueIdentifier>{cc1ea737-ecd8-4c56-940e-0b7ea36c8a7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{5cbaa889-a768-4467-8d82-1133c2afdb22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ngrok">
+      <UniqueIdentifier>{187e2e50-dbad-49f8-bb39-d4aaa55e4ad0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui/ui">
+      <UniqueIdentifier>{3a2cf6a6-f7f5-4299-b4ec-afe55a49141d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\HTTPRequest">
+      <UniqueIdentifier>{e723784b-f81e-4e24-9699-c0350495a673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\rapidjson">
+      <UniqueIdentifier>{83ebc2e7-1fce-4a0f-aa8c-d923a9e65531}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\dependencies\imgui\imgui.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_demo.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_draw.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_impl_dx9.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_impl_win32.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_widgets.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_stdlib.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\dependencies\imgui\imgui_rubik.cpp">
+      <Filter>Resource Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entry.cpp">
+      <Filter>Source Files\entry</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ngrok\ngrok.cpp">
+      <Filter>Source Files\ngrok</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\gui.cpp">
+      <Filter>Source Files\gui/ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gui\ui.cpp">
+      <Filter>Source Files\gui/ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\util.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\dependencies\imgui\imconfig.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui_impl_dx9.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui_impl_win32.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui_internal.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imstb_rectpack.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imstb_textedit.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imstb_truetype.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\HTTPRequest\HTTPRequest.hpp">
+      <Filter>Resource Files\HTTPRequest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\document.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\rapidjson.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\stringbuffer.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\writer.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\allocators.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\encodedstream.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\encodings.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\filereadstream.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\filewritestream.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\fwd.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\istreamwrapper.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\memorybuffer.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\memorystream.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\ostreamwrapper.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\pointer.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\prettywriter.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\reader.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\schema.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\rapidjson\stream.h">
+      <Filter>Resource Files\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui_stdlib.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\imgui\imgui_rubik.h">
+      <Filter>Resource Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include.hpp">
+      <Filter>Source Files\entry</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings.hpp">
+      <Filter>Source Files\entry</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ngrok\ngrok.hpp">
+      <Filter>Source Files\ngrok</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\gui.hpp">
+      <Filter>Source Files\gui/ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gui\ui.hpp">
+      <Filter>Source Files\gui/ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\util.hpp">
+      <Filter>Source Files\util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
