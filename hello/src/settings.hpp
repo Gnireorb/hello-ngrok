@@ -9,10 +9,10 @@ namespace settings
     static int region = 0;
     const char* const regions[]
     {
-        "south america",
-        "north america",
-        "europe",
-        "asia",
-        "australia"
+        "South America",
+        "North America",
+        "Europe",
+        "Asia",
+        "Australia"
     };
 }

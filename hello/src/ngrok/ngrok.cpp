@@ -1,7 +1,7 @@
-#include "../../dependencies/HTTPRequest/HTTPRequest.hpp"
-#include "../../dependencies/rapidjson/document.h"
-#include "../../dependencies/rapidjson/stringbuffer.h"
-#include "../../dependencies/rapidjson/writer.h"
+#include "../../../dependencies/HTTPRequest/HTTPRequest.hpp"
+#include "../../../dependencies/rapidjson/document.h"
+#include "../../../dependencies/rapidjson/stringbuffer.h"
+#include "../../../dependencies/rapidjson/writer.h"
 
 #include <Windows.h>
 #include <string>
@@ -17,21 +17,14 @@
 
 using namespace rapidjson;
 
-void ngrok::load_ngrok_settings( )
-{
-	Document doc;
-	doc.Parse( util::read_file( "settings.json" ).c_str( ) );
-
-	settings::region = doc[ "ngrok_region" ].GetInt( );
-	settings::port = doc[ "last_port" ].GetInt( );
-}
-
 bool ngrok::init( )
 {
 	try
 	{
+#if (!_DEBUG)
 		if ( !util::file_exists( "ngrok.exe" ) )
 			throw std::runtime_error( "O arquivo 'ngrok.exe' eh inexistente, baixe-o em 'ngrok.com'." );
+#endif
 
 		if ( !util::file_exists( "settings.json" ) )
 		{
@@ -56,13 +49,15 @@ bool ngrok::init( )
 
 bool ngrok::create_tunnel( int port, int region )
 {
+	STARTUPINFO startup_info{};
+	PROCESS_INFORMATION process_info{};
 	std::string proc_name = "ngrok.exe";
 	std::string args;
-	std::string cmd_line;
 
 	if ( region >= 4 || region < 0 )
 		return false;
 
+	// fmt <3
 	switch ( region )
 	{
 	case 0:
@@ -82,38 +77,8 @@ bool ngrok::create_tunnel( int port, int region )
 		break;
 	}
 
-	cmd_line = args.c_str( );
-
-	try
-	{
-		STARTUPINFO startup_info;
-		PROCESS_INFORMATION process_info;
-
-		memset( &startup_info, 0, sizeof( STARTUPINFO ) );
-		startup_info.cb = sizeof( STARTUPINFO );
-		memset( &process_info, 0, sizeof( PROCESS_INFORMATION ) );
-
-		BOOL proc = ::CreateProcess(
-			NULL,
-			(char*)cmd_line.c_str( ),
-			NULL,
-			NULL,
-			FALSE,
-			CREATE_NO_WINDOW | CREATE_NEW_PROCESS_GROUP,
-			NULL,
-			NULL,
-			&startup_info,
-			&process_info
-		);
-
-		if ( proc == FALSE )
-			throw std::runtime_error( "Ocorreu uma falha no CreateProcess()." );
-	}
-	catch ( const std::runtime_error& error )
-	{
-		::MessageBox( NULL, error.what( ), "Error", MB_ICONERROR );
+	if ( !util::create_process( startup_info, process_info, args ) )
 		return false;
-	}
 
 	return true;
 }
@@ -143,5 +108,5 @@ std::string ngrok::get_public_url( )
 		return public_url;
 	}
 
-	return nullptr;
+	return "Unknown IP";
 }

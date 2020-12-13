@@ -44,7 +44,6 @@ int main( HINSTANCE inst )
 		ImGui_ImplWin32_NewFrame( );
 		ImGui::NewFrame( );
 		 
-		// Scope
 		{
 			ui::begin( );
 		}

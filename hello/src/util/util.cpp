@@ -4,6 +4,40 @@
 
 #include "util.hpp"
 
+bool util::create_process( STARTUPINFO startup_info, PROCESS_INFORMATION process_info, std::string cmd_args )
+{
+	try
+	{
+		memset( &startup_info, 0, sizeof( STARTUPINFO ) );
+		startup_info.cb = sizeof( STARTUPINFO );
+		memset( &process_info, 0, sizeof( PROCESS_INFORMATION ) );
+
+		// CloseHandle( )
+		BOOL proc = ::CreateProcess(
+			NULL,
+			(char*)cmd_args.c_str( ),
+			NULL,
+			NULL,
+			FALSE,
+			CREATE_NO_WINDOW | CREATE_NEW_PROCESS_GROUP,
+			NULL,
+			NULL,
+			&startup_info,
+			&process_info
+		);
+
+		if ( proc == FALSE )
+			throw std::runtime_error( "Ocorreu uma falha no CreateProcess()." );
+	}
+	catch ( const std::runtime_error& error )
+	{
+		::MessageBox( NULL, error.what( ), "Error", MB_ICONERROR );
+		return false;
+	}
+
+	return true;
+}
+
 bool util::create_file( std::string file_name )
 {
 	std::ofstream file( file_name, std::ios::out | std::ios::trunc );
