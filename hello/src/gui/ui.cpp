@@ -6,10 +6,12 @@
 
 #include "../../../dependencies/imgui/imgui_stdlib.h"
 
+using namespace hello;
+
 static void load_settings( )
 {
     Document doc;
-    doc.Parse( util::read_file( "settings.json" ).c_str( ) );
+    doc.Parse( g_util.read_file( "settings.json" ).c_str( ) );
 
     settings::region = doc[ "ngrok_region" ].GetInt( );
     settings::port = doc[ "last_port" ].GetInt( );
@@ -34,13 +36,13 @@ void ui::begin( )
         if ( ImGui::InputInt( "Port", &settings::port ) )
         {
             Document doc;
-            doc.Parse( util::read_file( "settings.json" ).c_str( ) );
+            doc.Parse( g_util.read_file( "settings.json" ).c_str( ) );
             Value& var = doc[ "last_port" ];
             var.SetInt( settings::port );
             StringBuffer buffer;
             Writer<StringBuffer> writer( buffer );
             doc.Accept( writer );
-            util::write_to_file( "settings.json", buffer.GetString( ) );
+            g_util.write_to_file( "settings.json", buffer.GetString( ) );
         }
         ImGui::PopItemWidth( );
         if ( ImGui::Button( "Create tunnel" ) )
@@ -64,7 +66,7 @@ void ui::begin( )
         if ( ImGui::Button( "Copy IP" ) )
         {
             HWND hwnd = GetDesktopWindow( );
-            util::to_clipboard( hwnd, ngrok::get_public_url( ) );
+            g_util.to_clipboard( hwnd, ngrok::get_public_url( ) );
         }
         ImGui::Separator( );
         ImGui::Text( "Authtoken" );
@@ -79,13 +81,13 @@ void ui::begin( )
         if ( ImGui::Combo( "###tunnelregion", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
         {
             Document doc;
-            doc.Parse( util::read_file( "settings.json" ).c_str( ) );
+            doc.Parse( g_util.read_file( "settings.json" ).c_str( ) );
             Value& var = doc[ "ngrok_region" ];
             var.SetInt( settings::region );
             StringBuffer buffer;
             Writer<StringBuffer> writer( buffer );
             doc.Accept( writer );
-            util::write_to_file( "settings.json", buffer.GetString( ) );
+            g_util.write_to_file( "settings.json", buffer.GetString( ) );
         }
         ImGui::Separator( );
         if ( ImGui::CollapsingHeader( "Settings" ) )
