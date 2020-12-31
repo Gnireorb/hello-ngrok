@@ -16,26 +16,26 @@
 #include "../util/util.hpp"
 
 using namespace rapidjson;
-using namespace hello;
+
 
 bool ngrok::init( )
 {
 	try
 	{
 #if (!_DEBUG)
-		if ( !g_util.file_exists( "ngrok.exe" ) )
+		if ( !util::file_exists( "ngrok.exe" ) )
 			throw std::runtime_error( "O arquivo 'ngrok.exe' eh inexistente, baixe-o em 'ngrok.com'." );
 #endif
 
-		if ( !g_util.file_exists( "settings.json" ) )
+		if ( !util::file_exists( "settings.json" ) )
 		{
-			if ( !g_util.create_file( "settings.json" ) )
+			if ( !util::create_file( "settings.json" ) )
 				throw std::runtime_error( "Ocorreu uma falha ao criar o arquivo 'settings.json." );
 
-			if ( !g_util.file_exists( "settings.json" ) )
+			if ( !util::file_exists( "settings.json" ) )
 				throw std::runtime_error( "O arquivo 'settings.json' eh inexistente." );
 
-			if ( !g_util.write_to_file( "settings.json", "{\"last_port\":0,\"ngrok_region\":0}" ) )
+			if ( !util::write_to_file( "settings.json", "{\"last_port\":0,\"ngrok_region\":0}" ) )
 				throw std::runtime_error( "Ocorreu uma falha ao escrever em 'settings.json'." );
 		}
 	}
@@ -78,7 +78,7 @@ bool ngrok::create_tunnel( int port, int region )
 		break;
 	}
 
-	if ( !g_util.create_process( startup_info, process_info, args ) )
+	if ( !util::create_process( startup_info, process_info, args ) )
 		return false;
 
 	return true;
