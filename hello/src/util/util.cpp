@@ -74,26 +74,20 @@ bool util::file_exists( std::string string )
 	return ( stat( string.c_str( ), &buffer ) == 0 );
 }
 
-void util::to_clipboard( HWND hwnd, const std::string& s )
+void util::to_clipboard( const char* str )
 {
-	OpenClipboard( hwnd );
-	EmptyClipboard( );
-	HGLOBAL hg = GlobalAlloc( GMEM_MOVEABLE, s.size( ) + 1 );
-	if ( !hg ) { CloseClipboard( ); return; }
-	memcpy( GlobalLock( hg ), s.c_str( ), s.size( ) + 1 );
+	auto size = MultiByteToWideChar( CP_UTF8, NULL, str, -1, NULL, 0 );
+	if ( !size )
+		return;
+	auto hg = GlobalAlloc( GHND | GMEM_SHARE, size * 2 );
+	if ( !hg )
+		return;
+	auto p = GlobalLock( hg );
+	MultiByteToWideChar( CP_UTF8, NULL, str, -1, (LPWSTR)p, size );
 	GlobalUnlock( hg );
-	SetClipboardData( CF_TEXT, hg );
+	OpenClipboard( NULL );
+	EmptyClipboard( );
+	SetClipboardData( CF_UNICODETEXT, hg );
 	CloseClipboard( );
-	GlobalFree( hg );
 }
 
-void util::to_lowercase( std::string& string )
-{
-	std::transform( string.begin( ), string.end( ), string.begin( ), ::tolower );
-}
-
-void util::to_uppercase( std::string& string )
-{
-	std::transform( string.begin( ), string.end( ), string.begin( ), ::toupper );
-}
-	

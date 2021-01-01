@@ -63,8 +63,7 @@ void ui::begin( )
         ImGui::SameLine( );
         if ( ImGui::Button( "Copy IP" ) )
         {
-            HWND hwnd = GetDesktopWindow( );
-            util::to_clipboard( hwnd, ngrok::get_public_url( ) );
+            util::to_clipboard( ngrok::get_public_url( ).c_str( ) );
         }
         ImGui::Separator( );
         ImGui::Text( "Authtoken" );
