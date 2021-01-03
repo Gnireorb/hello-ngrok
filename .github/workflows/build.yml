@@ -19,7 +19,7 @@ jobs:
         run: '"%MSBUILD_PATH%\MSBuild.exe" hello/hello.vcxproj /p:Platform=Win32 /p:Configuration=Release'
       
       - name: Upload artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: hello
-          path: bin/Release/hello.exe
+          path: hello/bin/Release/hello.exe
