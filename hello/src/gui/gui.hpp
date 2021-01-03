@@ -24,5 +24,4 @@ namespace gui
 	void cleanup_device_d3d( );
 
 	void setup_imgui_style( );
-	void imgui_easy_theming( ImVec3 color_for_text, ImVec3 color_for_head, ImVec3 color_for_area, ImVec3 color_for_body, ImVec3 color_for_pops );
 }

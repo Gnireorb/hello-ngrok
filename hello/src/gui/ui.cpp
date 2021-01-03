@@ -23,7 +23,7 @@ void ui::begin( )
 
     ImGui::SetNextWindowSize( ImVec2( 360, 656 ), ImGuiCond_FirstUseEver );
     ImGui::SetNextWindowPos( ImVec2( 15, 12 ), ImGuiCond_FirstUseEver );
-    if ( ImGui::Begin( "hello-ngrok", NULL ) )
+    if ( ImGui::Begin( "hello-ngrok", NULL, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize ) )
     {
         if ( ImGui::CollapsingHeader( "Ngrok", ImGuiTreeNodeFlags_DefaultOpen ) )
         {
@@ -69,7 +69,7 @@ void ui::begin( )
             ImGui::Separator( );
             ImGui::Text( "Authtoken" );
             ImGui::InputText( "###authtokeninput", &authtoken );
-            if ( ImGui::Button( "Set ngrok authtoken" ) )
+            if ( ImGui::Button( "Set Ngrok Authtoken" ) )
             {
                 static STARTUPINFO startup_info{};
                 static PROCESS_INFORMATION process_info{};
