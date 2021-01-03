@@ -16,7 +16,7 @@ jobs:
 
       - name: Build
         shell: cmd
-        run: '"%MSBUILD_PATH%\MSBuild.exe" hello/hello.vcxproj /p:Platform=Win32 /p:Configuration=Release'
+        run: '"%MSBUILD_PATH%\MSBuild.exe" hello/hello.vcxproj /p:Platform=x64 /p:Configuration=Release'
       
       - name: Upload artifact
         uses: actions/upload-artifact@v2
