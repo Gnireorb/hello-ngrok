@@ -30,6 +30,9 @@
     <Filter Include="Resource Files\rapidjson">
       <UniqueIdentifier>{83ebc2e7-1fce-4a0f-aa8c-d923a9e65531}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\fmtlib">
+      <UniqueIdentifier>{3bb01500-fffa-4595-b831-89d3c6476759}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\dependencies\imgui\imgui.cpp">
@@ -56,9 +59,6 @@
     <ClCompile Include="..\dependencies\imgui\imgui_rubik.cpp">
       <Filter>Resource Files\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\entry.cpp">
-      <Filter>Source Files\entry</Filter>
-    </ClCompile>
     <ClCompile Include="src\ngrok\ngrok.cpp">
       <Filter>Source Files\ngrok</Filter>
     </ClCompile>
@@ -70,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="src\util\util.cpp">
       <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entry.cpp">
+      <Filter>Source Files\entry</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,12 +166,6 @@
     <ClInclude Include="..\dependencies\imgui\imgui_rubik.h">
       <Filter>Resource Files\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="src\include.hpp">
-      <Filter>Source Files\entry</Filter>
-    </ClInclude>
-    <ClInclude Include="src\settings.hpp">
-      <Filter>Source Files\entry</Filter>
-    </ClInclude>
     <ClInclude Include="src\ngrok\ngrok.hpp">
       <Filter>Source Files\ngrok</Filter>
     </ClInclude>
@@ -180,6 +177,21 @@
     </ClInclude>
     <ClInclude Include="src\util\util.hpp">
       <Filter>Source Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\util\logging.hpp">
+      <Filter>Source Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include.hpp">
+      <Filter>Source Files\entry</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings.hpp">
+      <Filter>Source Files\entry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\fmtlib\include\fmt\chrono.h">
+      <Filter>Resource Files\fmtlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\dependencies\fmtlib\include\fmt\core.h">
+      <Filter>Resource Files\fmtlib</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

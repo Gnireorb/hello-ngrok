@@ -7,6 +7,8 @@
 #include <fstream>
 #include <tchar.h>
 
+#include "../../dependencies/fmtlib/include/fmt/core.h"
+#include "../../dependencies/fmtlib/include/fmt/chrono.h"
 #include "../../dependencies/imgui/imgui.h"
 #include "../../dependencies/imgui/imgui_impl_dx9.h"
 #include "../../dependencies/imgui/imgui_impl_win32.h"

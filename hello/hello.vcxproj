@@ -81,6 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\lib\Release\</OutDir>
+    <IntDir>..\bin\lib\Intermediate\Release\hello\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -138,7 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -163,6 +165,8 @@
     <ClCompile Include="src\util\util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\dependencies\fmtlib\include\fmt\chrono.h" />
+    <ClInclude Include="..\dependencies\fmtlib\include\fmt\core.h" />
     <ClInclude Include="..\dependencies\HTTPRequest\HTTPRequest.hpp" />
     <ClInclude Include="..\dependencies\imgui\imconfig.h" />
     <ClInclude Include="..\dependencies\imgui\imgui.h" />
@@ -198,7 +202,13 @@
     <ClInclude Include="src\include.hpp" />
     <ClInclude Include="src\ngrok\ngrok.hpp" />
     <ClInclude Include="src\settings.hpp" />
+    <ClInclude Include="src\util\logging.hpp" />
     <ClInclude Include="src\util\util.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dependencies\fmtlib\fmtlib.vcxproj">
+      <Project>{2319c3fd-0fbb-edd3-f875-0128e4b67424}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

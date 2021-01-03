@@ -20,73 +20,75 @@ void ui::begin( )
     load_settings( );
 
     static bool debug_mode = false;
-    static std::string ip{};
-    static std::string authtoken{};
 
     ImGui::SetNextWindowSize( ImVec2( 360, 656 ), ImGuiCond_FirstUseEver );
     ImGui::SetNextWindowPos( ImVec2( 15, 12 ), ImGuiCond_FirstUseEver );
     if ( ImGui::Begin( "hello-ngrok", NULL ) )
     {
-        ImGui::Text( "hello-ngrok" );
-        ImGui::Separator( );
-        ImGui::Text( "Tunnel" );
-        ImGui::PushItemWidth( 200 );
-        if ( ImGui::InputInt( "Port", &settings::port ) )
+        if ( ImGui::CollapsingHeader( "Ngrok", ImGuiTreeNodeFlags_DefaultOpen ) )
         {
-            Document doc;
-            doc.Parse( util::read_file( "settings.json" ).c_str( ) );
-            Value& var = doc[ "last_port" ];
-            var.SetInt( settings::port );
-            StringBuffer buffer;
-            Writer<StringBuffer> writer( buffer );
-            doc.Accept( writer );
-            util::write_to_file( "settings.json", buffer.GetString( ) );
+            static std::string ip{};
+            static std::string authtoken{};
+            ImGui::Text( "Tunnel" );
+            ImGui::PushItemWidth( 200 );
+            if ( ImGui::InputInt( "Port", &settings::port ) )
+            {
+                Document doc;
+                doc.Parse( util::read_file( "settings.json" ).c_str( ) );
+                Value& var = doc[ "last_port" ];
+                var.SetInt( settings::port );
+                StringBuffer buffer;
+                Writer<StringBuffer> writer( buffer );
+                doc.Accept( writer );
+                util::write_to_file( "settings.json", buffer.GetString( ) );
+            }
+            ImGui::PopItemWidth( );
+            if ( ImGui::Button( "Create tunnel" ) )
+            {
+                ip.clear( );
+                ngrok::create_tunnel( settings::port, settings::region );
+            }
+            ImGui::SameLine( );
+            if ( ImGui::Button( "Close tunnel" ) )
+            {
+                ip.clear( );
+                std::system( "taskkill /f /im ngrok.exe" );
+            }
+            ImGui::InputText( "IP", &ip );
+            if ( ImGui::Button( "Get IP" ) )
+            {
+                ip.clear( );
+                ip = ngrok::get_public_url( );
+                util::to_clipboard( ip.c_str() );
+            }
+            ImGui::SameLine( );
+            if ( ImGui::Button( "Copy IP" ) )
+            {
+                util::to_clipboard( ngrok::get_public_url( ).c_str( ) );
+            }
+            ImGui::Separator( );
+            ImGui::Text( "Authtoken" );
+            ImGui::InputText( "###authtokeninput", &authtoken );
+            if ( ImGui::Button( "Set ngrok authtoken" ) )
+            {
+                static STARTUPINFO startup_info{};
+                static PROCESS_INFORMATION process_info{};
+                util::create_process( startup_info, process_info, fmt::format( "ngrok.exe authtoken {}", authtoken ) );
+            }
+            ImGui::Separator( );
+            ImGui::Text( "Tunnel region" );
+            if ( ImGui::Combo( "###tunnelregion", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
+            {
+                Document doc;
+                doc.Parse( util::read_file( "settings.json" ).c_str( ) );
+                Value& var = doc[ "ngrok_region" ];
+                var.SetInt( settings::region );
+                StringBuffer buffer;
+                Writer<StringBuffer> writer( buffer );
+                doc.Accept( writer );
+                util::write_to_file( "settings.json", buffer.GetString( ) );
+            }
         }
-        ImGui::PopItemWidth( );
-        if ( ImGui::Button( "Create tunnel" ) )
-        {
-            ip.clear( );
-            ngrok::create_tunnel( settings::port, settings::region );
-        }
-        ImGui::SameLine( );
-        if ( ImGui::Button( "Close tunnel" ) )
-        {
-            ip.clear( );
-            std::system( "taskkill /f /im ngrok.exe" );
-        }
-        ImGui::InputText( "IP", &ip );
-        if ( ImGui::Button( "Get IP" ) )
-        {
-            ip.clear( );
-            ip = ngrok::get_public_url( );
-        }
-        ImGui::SameLine( );
-        if ( ImGui::Button( "Copy IP" ) )
-        {
-            util::to_clipboard( ngrok::get_public_url( ).c_str( ) );
-        }
-        ImGui::Separator( );
-        ImGui::Text( "Authtoken" );
-        ImGui::InputText( "###authtokeninput", &authtoken );
-        if ( ImGui::Button( "Set ngrok authtoken" ) )
-        {
-            std::string commandline = "ngrok authtoken " + authtoken;
-            std::system( commandline.c_str( ) );
-        }
-        ImGui::Separator( );
-        ImGui::Text( "Tunnel region" );
-        if ( ImGui::Combo( "###tunnelregion", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
-        {
-            Document doc;
-            doc.Parse( util::read_file( "settings.json" ).c_str( ) );
-            Value& var = doc[ "ngrok_region" ];
-            var.SetInt( settings::region );
-            StringBuffer buffer;
-            Writer<StringBuffer> writer( buffer );
-            doc.Accept( writer );
-            util::write_to_file( "settings.json", buffer.GetString( ) );
-        }
-        ImGui::Separator( );
         if ( ImGui::CollapsingHeader( "Settings" ) )
         {
             if ( ImGui::Checkbox( "Debug mode", &debug_mode ) )

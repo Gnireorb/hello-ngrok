@@ -3,13 +3,17 @@
 #include "gui/ui.hpp"
 #include "ngrok/ngrok.hpp"
 #include "util/util.hpp"
+#include "util/logging.hpp"
 
 int main( HINSTANCE inst ) 
 {
 	ngrok::init( );
+	logging::info( "ngrok initilized." );
+
 	::ShowWindow( ::GetConsoleWindow( ), SW_HIDE );
 
 	auto hwnd = gui::create_window( inst );
+	logging::info( "created window" );
 
 	if ( !gui::create_device_d3d( hwnd ) )
 		return false;

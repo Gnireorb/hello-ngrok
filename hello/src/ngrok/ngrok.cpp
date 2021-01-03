@@ -17,7 +17,6 @@
 
 using namespace rapidjson;
 
-
 bool ngrok::init( )
 {
 	try
@@ -52,30 +51,38 @@ bool ngrok::create_tunnel( int port, int region )
 {
 	STARTUPINFO startup_info{};
 	PROCESS_INFORMATION process_info{};
-	std::string proc_name = "ngrok.exe";
 	std::string args;
 
 	if ( region >= 4 || region < 0 )
 		return false;
 
-	// fmt <3
 	switch ( region )
 	{
 	case 0:
-		args = proc_name + " tcp " + std::to_string( port ) + " --region sa";
+	{
+		args = fmt::format( "ngrok.exe tcp {} --region sa", port );
 		break;
+	}
 	case 1:
-		args = proc_name + " tcp " + std::to_string( port ) + " --region us";
+	{
+		args = fmt::format( "ngrok.exe tcp {} --region us", port );
 		break;
+	}
 	case 2:
-		args = proc_name + " tcp " + std::to_string( port ) + " --region eu";
+	{
+		args = fmt::format( "ngrok.exe tcp {} --region eu", port );
 		break;
+	}
 	case 3:
-		args = proc_name + " tcp " + std::to_string( port ) + " --region ap";
+	{
+		args = fmt::format( "ngrok.exe tcp {} --region ap", port );
 		break;
+	}
 	case 4:
-		args = proc_name + " tcp " + std::to_string( port ) + " --region au";
+	{
+		args = fmt::format( "ngrok.exe tcp {} --region au", port );
 		break;
+	}
 	}
 
 	if ( !util::create_process( startup_info, process_info, args ) )
@@ -97,16 +104,13 @@ std::string ngrok::get_public_url( )
 	{
 		MessageBox( NULL, e.what( ), "Error", MB_ICONERROR );
 	}
-	const char* json = api_request.c_str( );
 	Document d;
-	d.Parse( json );
+	d.Parse( api_request.c_str() );
 	Value const& tunnels = d[ "tunnels" ];
 	for ( auto& tunnel_url : tunnels.GetArray( ) )
 	{
 		std::string public_url = tunnel_url[ "public_url" ].GetString( );
-		public_url.erase( 0, 6 );
-
-		return public_url;
+		return public_url.erase( 0, 6 );
 	}
 
 	return "Unknown IP";
