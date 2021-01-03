@@ -77,7 +77,8 @@ void ui::begin( )
             }
             ImGui::Separator( );
             ImGui::Text( "Tunnel region" );
-            if ( ImGui::Combo( "###tunnelregion", &settings::region, settings::regions, sizeof( settings::regions ) / sizeof( *settings::regions ) ) )
+            const char* const regions[]{ "South America", "North America", "Europe", "Asia", "Australia" };
+            if ( ImGui::Combo( "###tunnelregion", &settings::region, regions, sizeof( regions ) / sizeof( *regions ) ) )
             {
                 Document doc;
                 doc.Parse( util::read_file( "settings.json" ).c_str( ) );
