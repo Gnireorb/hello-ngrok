@@ -205,11 +205,6 @@
     <ClInclude Include="src\util\logging.hpp" />
     <ClInclude Include="src\util\util.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\dependencies\fmtlib\fmtlib.vcxproj">
-      <Project>{2319c3fd-0fbb-edd3-f875-0128e4b67424}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

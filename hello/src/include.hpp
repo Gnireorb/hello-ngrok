@@ -7,6 +7,7 @@
 #include <fstream>
 #include <tchar.h>
 
+#define FMT_HEADER_ONLY
 #include "../../dependencies/fmtlib/include/fmt/core.h"
 #include "../../dependencies/fmtlib/include/fmt/chrono.h"
 #include "../../dependencies/imgui/imgui.h"

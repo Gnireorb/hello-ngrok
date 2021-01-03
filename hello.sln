@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hello", "hello\hello.vcxproj", "{A05E6367-D1BB-4A17-98D4-CAF3DEDFED88}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fmtlib", "dependencies\fmtlib\fmtlib.vcxproj", "{2319C3FD-0FBB-EDD3-F875-0128E4B67424}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -29,15 +27,6 @@ Global
 		{A05E6367-D1BB-4A17-98D4-CAF3DEDFED88}.Release|x64.Build.0 = Release|x64
 		{A05E6367-D1BB-4A17-98D4-CAF3DEDFED88}.Release|x86.ActiveCfg = Release|Win32
 		{A05E6367-D1BB-4A17-98D4-CAF3DEDFED88}.Release|x86.Build.0 = Release|Win32
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Debug|x64.ActiveCfg = Debug|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Debug|x64.Build.0 = Debug|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Debug|x86.ActiveCfg = Debug|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Dist|x64.ActiveCfg = Dist|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Dist|x64.Build.0 = Dist|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Dist|x86.ActiveCfg = Dist|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Release|x64.ActiveCfg = Release|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Release|x64.Build.0 = Release|x64
-		{2319C3FD-0FBB-EDD3-F875-0128E4B67424}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
