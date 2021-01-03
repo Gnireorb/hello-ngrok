@@ -22,4 +22,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: hello
-          path: bin/Release/hello.exe
+          path: |
+           bin/Release/hello.exe
+           bin/Release/hello-x64.exe
