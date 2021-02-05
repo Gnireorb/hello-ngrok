@@ -13,7 +13,7 @@ int main( HINSTANCE inst )
 	::ShowWindow( ::GetConsoleWindow( ), SW_HIDE );
 
 	auto hwnd = gui::create_window( inst );
-	logging::info( "created window" );
+	logging::info( "created window." );
 
 	if ( !gui::create_device_d3d( hwnd ) )
 		return false;
